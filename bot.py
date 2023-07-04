@@ -17,11 +17,13 @@ async def on_ready():
 
 @tasks.loop(minutes = 10)
 async def change_banner():
-    guild = bot.get_guild(891345145713270854)
-    main_channel = bot.get_channel(891367331727564821) #общий чат
-    flud_channel = bot.get_channel(966744691372597248) #флудилка
-    cmnds_channel = bot.get_channel(1038011786105995275) #команды
-    brmld_channel = bot.get_channel(1038011856108929094) #казино
+    guild = bot.get_guild('''your server id''')
+    main_channel = bot.get_channel('''your channel id''') 
+    flud_channel = bot.get_channel('''your channel id''') 
+    cmnds_channel = bot.get_channel('''your channel id''') 
+    brmld_channel = bot.get_channel('''your channel id''')  
+
+    '''You can use more channels or less'''
 
     image = Image.open('banner.png')
 
@@ -34,39 +36,39 @@ async def change_banner():
     mes_cnt_cmnds_channel = 0
     mes_cnt_brmld_channel = 0
 
-    print('Start counting...')
+    print('Start counting...') #it's not obligatory
 
     async for _ in main_channel.history(after = one_month, limit = None):
         mes_cnt_main_channel += 1
 
-    print('pass 1')
+    print('pass 1') #it's not obligatory
     
     async for _ in flud_channel.history(after = one_month, limit = None):
         mes_cnt_flud_channel += 1
     
-    print('pass 2')
+    print('pass 2') #it's not obligatory
     
     async for _ in cmnds_channel.history(after = one_month, limit = None):
         mes_cnt_cmnds_channel += 1
     
-    print('pass 3')
+    print('pass 3') #it's not obligatory
 
     async for _ in brmld_channel.history(after = one_month, limit = None):
         mes_cnt_brmld_channel += 1
 
-    print('Point 1 passed✅')
+    print('Point 1 passed✅') #it's not obligatory
 
     message_count = mes_cnt_main_channel + mes_cnt_flud_channel + mes_cnt_cmnds_channel + mes_cnt_brmld_channel
 
-    print('Point 2 passed✅')
+    print('Point 2 passed✅') #it's not obligatory
 
     font = ImageFont.truetype('DynaPuff-Medium.ttf', size = 150)
-    draw.text((527, 705), f'{message_count}', '#8D17BA', font = font)
+    draw.text((527, 705), f'{guild.member_count}', fill = '#8D17BA', font = font)
 
     font = ImageFont.truetype('DynaPuff_Medium.ttf', size = 150)
-    draw.text((1250, 705), f'{guild.member_count}', '#8D17BA', font = font)
+    draw.text((1250, 705), f'{message_count}', fill = '#8D17BA', font = font)
 
-    print('pass 5')
+    print('pass 5') #it's not obligatory
 
     image.save('stats_banner.png')
     print('Image is saved')
